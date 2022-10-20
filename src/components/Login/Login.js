@@ -7,10 +7,11 @@ import { Navigate } from 'react-router-dom';
 import './Login.css';
 
 async function loginUser(credentials) {
-    return(fetch("http://localhost:8080/login", {
+    return(fetch("http://localhost:3000/login", {
         method:"POST",
         headers:{
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            'Accept': 'application/json'
         },
         body: JSON.stringify(credentials)
     })).then(data => data.json());
