@@ -5,12 +5,24 @@ import PropTypes from "prop-types";
 import { Navigate } from 'react-router-dom';
 
 export default function Cars() {
+
+    async function loginUser(credentials) {
+        return(fetch("http://localhost:8080/cars", {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify()
+        })).then(data => data.json());
+        
+    }
+
     return( 
         <div class='container border'>
 
             <div class='row border'>
                <div class='col-4'>
-                    <img src='https://imgur.com/a/v4qwgmp' alt='carro'/>
+                    <img src='download.jpeg' alt='carro' /> 
                </div>
                <div class="col-8">
                    <p>Modelo: Fiat Uno</p>

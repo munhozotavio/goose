@@ -12,6 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 
 const validLogins = [{email:"o204280@dac.unicamp.br", password:"teste"},{email:"a213368",password:"teste"}];
 
+const cars = [{modelo:"Fiat Uno",placa:"ABC1234",ano:"2016",cor:"Preto"},
+                {modelo:"Corsa",placa:"DEF5678",ano:"2020",cor:"Prata"},
+                {modelo:"Onix",placa:"GHI9101",ano:"2021",cor:"Preto"}]
+
 
 const defaultLocation = {
     address: 'R. Sérgio Buarque De Holanda - Cidade Universitária, Campinas - SP, 13083-859',
@@ -41,6 +45,10 @@ app.use("/location", (req, res) => {
     if (req.body.access_token != null) {
         res.send(defaultLocation);
     }
+})
+
+app.use('/cars',(req,res) => {
+    res.send(cars)
 })
 
 app.listen(8080, () => console.log("API IS RUNNING"));
