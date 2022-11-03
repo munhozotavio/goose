@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {Route, Routes, Navigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import './App.css';
 import Dashboard from '../Dashboard/Dashboard';
@@ -13,6 +14,9 @@ function App(){
     const {token, setToken} = useToken();
     return(
         <div className="wrapper">
+            <Helmet>
+                <title>UniRadar</title>
+            </Helmet>
             <Routes>
                 <Route exact path="/" element={<PrivateRoutes > <Navigate to="/dashboard" /> </PrivateRoutes>}/>
                 <Route exact path="/login" element={<PublicRoutes> <Login setToken={setToken}/> </PublicRoutes>}/>
