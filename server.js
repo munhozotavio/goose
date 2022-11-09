@@ -47,7 +47,7 @@ app.use("/location", (req, res) => {
     }
 })
 
-app.use('/cars',(req,res) => {
+app.use('/cars',(res) => {
     res.send(cars)
 })
 
