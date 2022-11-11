@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import PropTypes from "prop-types";
-import { Navigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+// import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
+// import PropTypes from "prop-types";
+// import { Navigate } from 'react-router-dom';
 
-
+import "./Cars.css"
 
 export default function Cars() {
     const [cars,setCars] = useState();
@@ -16,8 +17,6 @@ export default function Cars() {
     const getCars = async() => {
         return (fetch('http://localhost:8080/cars',{
             method:"GET",
-           
-        
         })).then(data =>data.json());
     }
 
@@ -25,19 +24,47 @@ export default function Cars() {
         const c = await getCars();
         setCars(c);
     }
+
+    function card(car){
+        const modelo = car.modelo;
+        const placa = car.placa;
+        const ano = car.ano;
+        const cor = car.cor;
+
+        return (
+            <div class="col-2 ">
+                <Card style={{ width: '12rem', display: 'flex', justifyContent: 'center'}}>
+                    <Card.Body >
+                        <Card.Title>{modelo}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{placa}</Card.Subtitle>
+                        <Card.Text>
+                        {ano}<br/>{cor}
+                        </Card.Text>
+                        
+                    </Card.Body>
+                </Card>
+            </div>
+        )
+    }
+    
+    function cars_cards(){
+        return( 
+        <div class='container'  >
+            {cars.map(car => card(car))}
+        </div>
+        )
+
+    } 
     
     if(!cars) return 
     
-    // const cars = [{modelo:"Fiat Uno",placa:"ABC1234",ano:"2016",cor:"Preto"},
-    // {modelo:"Corsa",placa:"DEF5678",ano:"2020",cor:"Prata"},
-    // {modelo:"Onix",placa:"GHI9101",ano:"2021",cor:"Preto"}];
     return( 
-        
-        <div class='container square border border-5 col-2' >
-            {cars.map(car => <div class='container' key={car}> <div class="row border"><p>Modelo: {car.modelo}</p>
-                                                                     <p>Placa:{car.placa}</p>
-                                                                     <p>Ano: {car.ano}</p>
-                                                                     <p>Cor:{car.cor}</p> </div></div>)}
+        <div style={{height:"25rem",display: 'flex', justifyContent: 'center'}}>
+            
+            <Card >
+                <Card.Title>Veiculos</Card.Title>
+                <Card.Body style={{overflowY: 'auto'}}>{cars_cards()}</Card.Body>
+            </Card>
         </div>
     )
 }
