@@ -18,8 +18,8 @@ function App(){
                 <Route exact path="/" element={<PrivateRoutes > <Navigate to="/dashboard" /> </PrivateRoutes>}/>
                 <Route exact path="/login" element={<PublicRoutes> <Login setToken={setToken}/> </PublicRoutes>}/>
                 <Route exact path="/dashboard" element={<PrivateRoutes> <Dashboard /> </PrivateRoutes>}/>
-                <Route exact path="/cars" element={<PublicRoutes> <Cars /> </PublicRoutes>}/>
-                <Route exact path="/cars_cad" element={<PublicRoutes><Cars_cad /></PublicRoutes>}/>
+                <Route exact path="/cars" element={<PrivateRoutes> <Cars /> </PrivateRoutes>}/>
+                <Route exact path="/cars_cad" element={<PrivateRoutes><Cars_cad /></PrivateRoutes>}/>
             </Routes>
         </div>
     );

@@ -39,7 +39,7 @@ export default function Cars_cad(){
                     <div class='col-sm-4 border border-info rounded'> 
                         <Form  class='row'  onSubmit={handleSubmit}>
                             <Form.Group class='space-form' controlId="formModelo">
-                                <Form.Label>Cadastro de Veiculo</Form.Label>
+                                <Form.Label>Cadastro de Veículo</Form.Label>
                                 <Form.Control autoFocus type='modelo' placeholder='Modelo' value={modelo} onChange={(e)=>setModelo(e.target.value)} />
                             </Form.Group>
                             <Form.Group class='space-form'controlId="formPlaca">
@@ -54,9 +54,9 @@ export default function Cars_cad(){
                                 {/* <Form.Label>Ano</Form.Label> */}
                                 <Form.Control autoFocus type='ano' placeholder='Ano' value={ano} onChange={(e)=>setAno(e.target.value)} />
                             </Form.Group>
-                            <div class='space'>
+                            {/* <div class='space'>
                                 <input type='file' name='foto' onChange={handlerFoto}/> 
-                            </div>
+                            </div> */}
                             <div class='space'>
                             <Button variant="primary" type="submit" disabled={!validateForm()}>Cadastrar</Button>
                             </div>
