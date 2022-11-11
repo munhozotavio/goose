@@ -62,7 +62,7 @@ export default function Cars() {
         <div style={{height:"25rem",display: 'flex', justifyContent: 'center'}}>
             
             <Card >
-                <Card.Title>Veiculos</Card.Title>
+                <Card.Title>Veículos</Card.Title>
                 <Card.Body style={{overflowY: 'auto'}}>{cars_cards()}</Card.Body>
             </Card>
         </div>
