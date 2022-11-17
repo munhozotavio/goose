@@ -5,7 +5,8 @@ import { Helmet } from 'react-helmet';
 import './App.css';
 import Dashboard from '../Dashboard/Dashboard';
 import Cars from '../Cars/Cars';
-import Login from '../Login/Login'
+import Login from '../Login/Login';
+import Cars_cad from '../Cars_cad/Cars_cad';
 import RenderMap from "../Map/Helper";
 import useToken from "./useToken";
 import PrivateRoutes from "./PrivateRoutes";
@@ -23,7 +24,9 @@ function App(){
                 <Route exact path="/login" element={<PublicRoutes> <Login setToken={setToken}/> </PublicRoutes>}/>
                 <Route exact path="/dashboard" element={<PrivateRoutes> <Dashboard /> </PrivateRoutes>}/>
                 <Route exact path="/cars" element={<PrivateRoutes> <Cars /> </PrivateRoutes>}/>
+                <Route exact path="/cars_cad" element={<PrivateRoutes><Cars_cad /></PrivateRoutes>}/>
                 <Route exact path="/dashboard/:id" element={<PrivateRoutes> <RenderMap /> </PrivateRoutes>}/>
+
             </Routes>
         </div>
     );
