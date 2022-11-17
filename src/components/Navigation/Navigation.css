@@ -1,0 +1,9 @@
+.btn-link, .btn-link:active, .btn-link:visited {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+.btn-link:hover{
+    text-decoration: none !important;
+    color: grey !important;
+}
