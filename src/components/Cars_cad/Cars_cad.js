@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import PropTypes from "prop-types";
 import { Navigate } from 'react-router-dom';
 import { Container } from "react-bootstrap";
+import useToken from './../App/useToken';
 
 
 
@@ -16,13 +17,39 @@ export default function Cars_cad(){
     const [ano,setAno] = useState("");
     const [foto,setFoto] = useState("");
     const [flag,setFlag] = useState(false)
+    const {token, setToken} = useToken();
 
-    const handleSubmit = async (evente) =>{
-        alert("Veiculo Cadastrado")
+
+    const postForm = async() => {
+        const values = {
+            plate:placa,
+            model:modelo,
+            color:cor,
+            year: ano,
+            access_token:token
+        }
+
+        return (fetch('http://localhost:8080/cars',{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                'Accept': 'application/json'
+            },
+            body:JSON.stringify(values)
+        })).then(data =>data.json());
+    }
+
+    const handleSubmit = async (event) =>{
+        event.preventDefault();
+        const message = await postForm();
+        alert(message)
+        if (message == "Veículo cadastrado com sucesso!") {
+            window.location.href="/cars"
+        }
     }
 
     const validateForm = () => {
-        return modelo.length > 0 && placa.length > 0 && cor.length > 0 && ano.length > 0 && flag
+        return modelo.length > 0 && placa.length > 0 && cor.length > 0 && ano.length > 0
     }
 
     const handlerFoto = (event) =>{

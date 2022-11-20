@@ -30,7 +30,6 @@ export default function Login({setToken}) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const token = await loginUser({email,password});
-        console.log(token)
         if (!token.length){
             alert("Usuário ou senha incorretos");
         } 
