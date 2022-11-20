@@ -12,34 +12,52 @@ import Map from "./Map";
 export default function RenderMap(props){
     const params = useParams();
     const {token, setToken} = useToken();
+    const [apiKey, setKey] = useState();
     const [location, setLocation] = useState();
     const [counter, setCounter] = React.useState(60);
 
-    const getLocation = async (credentials) => {
-        console.log(credentials);
-        return (fetch("http://localhost:8080/location", {
-            method:"POST",
+    const getLocation = async (plate) => {
+        return (fetch("http://localhost:8080/location?" + new URLSearchParams({
+            access_token:token,
+            plate
+        }), {
+            method:"GET",
             headers:{
                 "Content-Type":"application/json"
             },
-            body: JSON.stringify(credentials)
         })).then(data => data.json());
     }
 
-    const handleLocation = async (token, plate) => {
-        const location = await getLocation({access_token:token, plate});
-        setLocation(location);
+    const getApiKey = async () => {
+        return (fetch("http://localhost:8080/location/api?" + new URLSearchParams({
+            access_token:token
+        }), {
+            method:"GET",
+            headers:{
+                "Content-Type":"application/json"
+            },
+        })).then(data => data.json());
+    }
+
+    const handleApiKey = async () => {
+        const apiKey = await getApiKey();
+        setKey(apiKey);
+    }
+
+    const handleLocation = async (plate) => {
+        const location = await getLocation(plate);
+        setLocation(location[0]);
     }
 
     const renderComponent = (text, showErrorMessage=false) => {
-        if (location) return text
+        if (location && apiKey) return text
         else if(showErrorMessage) return <p>Veículo não encontrado, volte para o dashboard e tente novamente</p>
         else return 
     }
 
     useEffect(() => {
-        handleLocation(token, params.id);
-        console.log("entrei aqui")
+        handleApiKey();
+        handleLocation(params.id);
     }, [])
 
     useEffect(() => {
@@ -51,6 +69,7 @@ export default function RenderMap(props){
         window.location.reload();
     }
 
+    if (!apiKey && !location) return
 
     return(
         <div>
@@ -68,7 +87,8 @@ export default function RenderMap(props){
                 </Row></div>), false)}
             </Container>
             <br/>
-            {renderComponent(<Map location={location} zoomLevel={17}/>, true)}
+            
+            {renderComponent(<Map location={location} zoomLevel={17} apiKey={apiKey.apiKey}/>, true)}
         </div>
     )
 }

@@ -14,12 +14,13 @@ export default function DropdownCar(props) {
 
     const getCarList = async (credentials) => {
     
-        return (fetch("http://localhost:8080/getCars", {
-            method:"POST",
+        return (fetch("http://localhost:8080/cars?" + new URLSearchParams({
+            access_token: token
+        }), {
+            method:"GET",
             headers:{
                 "Content-Type":"application/json"
             },
-            body: JSON.stringify(credentials)
         })).then(data => data.json());
     }
 
