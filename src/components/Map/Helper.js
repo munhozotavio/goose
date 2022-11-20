@@ -39,7 +39,6 @@ export default function RenderMap(props){
 
     useEffect(() => {
         handleLocation(token, params.id);
-        console.log("entrei aqui")
     }, [])
 
     useEffect(() => {

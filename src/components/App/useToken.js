@@ -9,10 +9,8 @@ export default function useToken() {
     const [token, setToken] = useState(getToken());
 
     const saveToken = (token) => {
-        const obj = Object.entries(token);
-        if (obj.length == 0) return
-        localStorage.setItem(obj[0][0],obj[0][1]);
-        setToken(obj[0][1])
+        localStorage.setItem("access_token",token);
+        setToken(token);
     }   
 
     return {
