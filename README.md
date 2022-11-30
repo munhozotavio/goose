@@ -1,4 +1,4 @@
 # goose
 Front-end repository for the UniRadar project.
 
-![Goose img](https://github.com/munhozotavio/goose/blob/main/img/goosehat.png =250x250)
+<img src="https://github.com/munhozotavio/goose/blob/main/img/goosehat.png" width="250" heigh="400"/>
