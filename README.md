@@ -56,7 +56,7 @@ Front-end repository for the UniRadar project.
  </tr>
  
   <tr>
-  <td>Thiago Dall'Oca/td>
+  <td>Thiago Dall'Oca</td>
   <td>206341</td>
   <td>tdalloca@gmail.com/t206341@dac.unicamp.br</td>
   <td>/tiagodalloca</td>
